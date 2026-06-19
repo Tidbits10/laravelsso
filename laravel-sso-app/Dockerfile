@@ -16,4 +16,4 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction \
 
 RUN printf '<VirtualHost *:80>\nDocumentRoot /var/www/html/public\n<Directory /var/www/html/public>\nOptions Indexes FollowSymLinks\nAllowOverride All\nRequire all granted\n</Directory>\nErrorLog ${APACHE_LOG_DIR}/error.log\nCustomLog ${APACHE_LOG_DIR}/access.log combined\n</VirtualHost>\n' > /etc/apache2/sites-available/000-default.conf
 
-CMD php artisan config:clear && php artisan migrate --force && apache2-foreground
+CMD php artisan config:clear && php artisan migrate --force && php artisan db:seed --force && apache2-foreground
