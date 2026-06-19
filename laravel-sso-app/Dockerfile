@@ -9,7 +9,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-COPY laravel-sso-app/ .
+COPY . .
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction \
     && chown -R www-data:www-data storage bootstrap/cache
